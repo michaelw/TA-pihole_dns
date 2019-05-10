@@ -2,7 +2,7 @@ rcode,name,description
 0,NoError,No Error
 1,FormErr,Format Error
 2,ServFail,Server Failure
-3,NXDomain,Non-Existent Domain
+3,NXDOMAIN,Non-Existent Domain
 4,NotImp,Not Implemented
 5,Refused,Query Refused
 6,YXDomain,Name Exists when it should not
