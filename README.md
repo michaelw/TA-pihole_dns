@@ -28,5 +28,5 @@ disabled = 0
 sourcetype = pihole
 ```
 
-## Pihole Logging Recommendations
+## Pihole Logging Requirements
 Set `log-queries=extra` in the pihole dnsmasq.conf file. This is normally located in /etc/dnsmasq.d/01-pihole.conf but it may vary depending on your distribution.
