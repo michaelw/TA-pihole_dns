@@ -1,6 +1,10 @@
 # TA-pihole_dns
 Splunk Add-on for the Pihole DNS server
 
+```
+Version: 1.2.0
+```
+
 ## Sourcetype
 ```
 pihole
@@ -28,4 +32,4 @@ sourcetype = pihole
 ```
 
 ## Pihole Logging Requirements
-Set `log-queries=extra` in the pihole dnsmasq.conf file. Pi-hole recommends to make any changes to a new configuration file to avoid changes to be overridden during an update. 
+Set `log-queries=extra` in the pihole dnsmasq.conf file. Pi-hole recommends to make any changes to a new configuration file to avoid changes to be overridden during an update.
