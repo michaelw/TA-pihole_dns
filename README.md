@@ -11,9 +11,8 @@ Splunk platform Instance type | Supported | Required | Actions required/ Comment
 ----------------------------- | --------- | -------- | --------------------------
 Search Heads | Yes | Yes | Install this add-on to all search heads
 Indexers | Yes | Conditional | Not required if heavy forwarders are used to collect data.
-Heavy Forwarders | Yes | Conditional | Not required.
+Heavy Forwarders | Yes | Conditional | Only needed if data first passes through a HF before the indexer tier.
 
-\* **This add-on must be installed on either the HF or Indexers.**
 
 ## Input Requirements
 Set the sourcetype to `pihole` in the inputs.conf file on the forwarder.
@@ -29,4 +28,4 @@ sourcetype = pihole
 ```
 
 ## Pihole Logging Requirements
-Set `log-queries=extra` in the pihole dnsmasq.conf file. This is normally located in /etc/dnsmasq.d/01-pihole.conf but it may vary depending on your distribution.
+Set `log-queries=extra` in the pihole dnsmasq.conf file. Pi-hole recommends to make any changes to a new configuration file to avoid changes to be overridden during an update. 
