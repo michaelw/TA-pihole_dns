@@ -2,7 +2,7 @@
 
 Info | Description
 ------|----------
-Version | 1.2.2
+Version | 1.2.2 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
 Vendor Product Version | [Pi-hole v4.3.2](https://pi-hole.net/)
 Add-on has a web UI | No. This add-on does not contain any views.
 
