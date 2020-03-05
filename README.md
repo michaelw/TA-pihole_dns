@@ -13,6 +13,18 @@ Version 1.2.2
 - Updated Readme
 ```
 
+## Pihole Logging Requirements
+
+\* ***Failing to perform the following will cause this add-on to not extract fields properly***
+
+Set `log-queries=extra` in the pihole dnsmasq configuration file. Pi-hole recommends to make any changes to a new configuration file to avoid changes to be overridden during an update.
+
+1. open `/etc/dnsmasq.d/01-pihole.conf` with a text editor
+1. Add/update `log-queries=extra`. save and close the file
+1. Restart pi-hole with `pihole restartdns`
+
+
+
 ## Where to Install
 
 Splunk platform Instance type | Supported | Required | Actions required/ Comments
@@ -20,6 +32,7 @@ Splunk platform Instance type | Supported | Required | Actions required/ Comment
 Search Heads | Yes | Yes | Install this add-on to all search heads
 Indexers | Yes | Conditional | Not required if heavy forwarders are used to collect data. Required if using Universal or Light Forwarders.
 Heavy Forwarders | Yes | Conditional | Required, if HFs are used to collect this data source.
+Universal Forwarders | Yes | Not required | The add-on includes an inputs.conf that is disabled by default. This can be used to create an input on the forwarder if enabled.
 
 \* For more information, see Splunk's [documentation](https://docs.splunk.com/Documentation/AddOns/released/Overview/Installingadd-ons) on installing Add-ons.
 
@@ -54,9 +67,6 @@ sourcetype = pihole:ftl
 ```
 
 Push the configuration to the forwarder, if using a deployment server, or restart the UF if configuring on the UF itself.
-
-## Pihole Logging Requirements
-Set `log-queries=extra` in the pihole dnsmasq.conf file. Pi-hole recommends to make any changes to a new configuration file to avoid changes to be overridden during an update.
 
 ## Bugs
 Please open an issue at [github.com](https://github.com/ZachChristensen28/TA-pihole_dns)
