@@ -19,8 +19,8 @@ Version 1.2.2
 
 Set `log-queries=extra` in the pihole dnsmasq configuration file. Pi-hole recommends to make any changes to a new configuration file to avoid changes to be overridden during an update.
 
-1. open `/etc/dnsmasq.d/01-pihole.conf` with a text editor
-1. Add/update `log-queries=extra`. save and close the file
+1. Create a new file: `/etc/dnsmasq.d/02-pihole-splunk.conf`.
+1. Add `log-queries=extra` to the file. save and close the file
 1. Restart pi-hole with `pihole restartdns`
 
 
