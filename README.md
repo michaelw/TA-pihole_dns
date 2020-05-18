@@ -1,16 +1,18 @@
 # TA-pihole_dns - Add-on for Pi-hole DNS Server
 
+![GitHub](https://img.shields.io/github/license/zachchristensen28/TA-pihole_dns)
+
 Info | Description
 ------|----------
-Version | 1.2.2 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
-Vendor Product Version | [Pi-hole v4.3.2](https://pi-hole.net/)
+Version | 1.2.3 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
+Vendor Product Version | [Pi-hole v5.0](https://pi-hole.net/)
 Add-on has a web UI | No. This add-on does not contain any views.
 
 The TA-pihole_dns Add-on allows Splunk data administrators to map the Pi-Hole DNS events to the [CIM](https://docs.splunk.com/Splexicon:CommonInformationModel) enabling the data to be used with other Splunk Apps, such as Enterprise Security.
 
 ```
-Version 1.2.2
-- Updated Readme
+Version 1.2.3
+- Fixed field extractions not capturing blocked queries with Pi-hole v5 update.
 ```
 
 ## Pihole Logging Requirements
