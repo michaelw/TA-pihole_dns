@@ -48,9 +48,9 @@ Below are a list of sourcetypes which this Add-on will automatically identify an
 
 Source type | Description | CIM Data Models
 ----------- | ----------- | ---------------
-`pihole` | Access Events to OPNsense firewall. | [Network Resolution](https://docs.splunk.com/Documentation/CIM/latest/User/NetworkResolutionDNS)
-`pihole:dhcp` | Cron Events | [Network Sessions](https://docs.splunk.com/Documentation/CIM/latest/User/NetworkSessions)
-`pihole:ftl` | DHCP Events | None
+`pihole` | Pi-hole DNS events | [Network Resolution](https://docs.splunk.com/Documentation/CIM/latest/User/NetworkResolutionDNS)
+`pihole:dhcp` | Pi-hole DHCP events | [Network Sessions](https://docs.splunk.com/Documentation/CIM/latest/User/NetworkSessions)
+`pihole:ftl` | Pi-hole FTL events | None
 
 ## Installation Walkthrough
 
