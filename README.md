@@ -44,7 +44,7 @@ Set the sourcetype to `pihole` in the inputs.conf file on the forwarder.
 
 ## Sourcetypes
 
-Below are a list of sourcetypes which this Add-on will automatically identify and do not need to be set manually.
+Below are a list of sourcetypes which this Add-on uses. The `pihole:dhcp` sourcetype will automatically be transformed when the `pihole` sourcetype is set in the inputs configuration.
 
 Source type | Description | CIM Data Models
 ----------- | ----------- | ---------------
