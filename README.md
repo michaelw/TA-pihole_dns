@@ -4,16 +4,15 @@
 
 Info | Description
 ------|----------
-Version | 1.2.4 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
+Version | 1.2.5 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
 Vendor Product Version | [Pi-hole v5.0](https://pi-hole.net/)
 Add-on has a web UI | No. This add-on does not contain any views.
 
 The TA-pihole_dns Add-on allows Splunk data administrators to map the Pi-Hole DNS events to the [CIM](https://docs.splunk.com/Splexicon:CommonInformationModel) enabling the data to be used with other Splunk Apps, such as Enterprise Security.
 
-```
-Version 1.2.4
-- Added additional extracted fields to work with Pihole DNS app.
-- Fixed field extractions not capturing blocked queries with Pi-hole v5 update.
+```TEXT
+Version 1.2.5
+- Added extractions for DHCP events.
 ```
 
 ## Pihole Logging Requirements
@@ -25,8 +24,6 @@ Set `log-queries=extra` in the pihole dnsmasq configuration file. Pi-hole recomm
 1. Create a new file: `/etc/dnsmasq.d/02-pihole-splunk.conf`.
 1. Add `log-queries=extra` to the file. save and close the file
 1. Restart pi-hole with `pihole restartdns`
-
-
 
 ## Where to Install
 
@@ -40,13 +37,24 @@ Universal Forwarders | Yes | Not required | The add-on includes an inputs.conf t
 \* For more information, see Splunk's [documentation](https://docs.splunk.com/Documentation/AddOns/released/Overview/Installingadd-ons) on installing Add-ons.
 
 ## Input Requirements
+
 Set the sourcetype to `pihole` in the inputs.conf file on the forwarder.
 
 \* ***See [Installation Walkthrough](#Installation-Walkthrough) for more information***
 
+## Sourcetypes
+
+Below are a list of sourcetypes which this Add-on uses. The `pihole:dhcp` sourcetype will automatically be transformed when the `pihole` sourcetype is set in the inputs configuration.
+
+Source type | Description | CIM Data Models
+----------- | ----------- | ---------------
+`pihole` | Pi-hole DNS events | [Network Resolution](https://docs.splunk.com/Documentation/CIM/latest/User/NetworkResolutionDNS)
+`pihole:dhcp` | Pi-hole DHCP events | [Network Sessions](https://docs.splunk.com/Documentation/CIM/latest/User/NetworkSessions)
+`pihole:ftl` | Pi-hole FTL events | None
+
 ## Installation Walkthrough
 
-#### Splunk Universal Forwarder Configuration
+### Splunk Universal Forwarder Configuration
 
 Download the latest [Splunk Universal Forwarder (UF)](https://www.splunk.com/en_us/download/universal-forwarder.html) appropriate for your server. _This UF should be installed on the same server as the Pi-Hole server_.
 
@@ -72,4 +80,5 @@ sourcetype = pihole:ftl
 Push the configuration to the forwarder, if using a deployment server, or restart the UF if configuring on the UF itself.
 
 ## Bugs
+
 Please open an issue at [github.com](https://github.com/ZachChristensen28/TA-pihole_dns)
