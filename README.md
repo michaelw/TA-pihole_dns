@@ -12,11 +12,9 @@ The TA-pihole_dns Add-on allows Splunk data administrators to map the Pi-Hole DN
 
 ```TEXT
 Version 1.2.6
-New
-
 Fixed
-- Regex Blacklist event not properly extracted
-- HTTPS record types fixed (type=65)
+- Regex/Exact query blacklist events not being extracted.
+- HTTPS record types fixed (type=65).
 ```
 
 ## Pihole Logging Requirements
