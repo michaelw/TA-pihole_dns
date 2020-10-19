@@ -4,15 +4,17 @@
 
 Info | Description
 ------|----------
-Version | 1.2.5 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
+Version | 1.2.6 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
 Vendor Product Version | [Pi-hole v5.0](https://pi-hole.net/)
 Add-on has a web UI | No. This add-on does not contain any views.
 
 The TA-pihole_dns Add-on allows Splunk data administrators to map the Pi-Hole DNS events to the [CIM](https://docs.splunk.com/Splexicon:CommonInformationModel) enabling the data to be used with other Splunk Apps, such as Enterprise Security.
 
 ```TEXT
-Version 1.2.5
-- Added extractions for DHCP events.
+Version 1.2.6
+Fixed
+- Regex/Exact query blacklist events not being extracted.
+- HTTPS record types fixed (type=65).
 ```
 
 ## Pihole Logging Requirements
