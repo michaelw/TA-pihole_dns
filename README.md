@@ -6,7 +6,7 @@ Info | Description
 ------|----------
 Version | 1.2.7 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
 Vendor Product Version | [Pi-hole v5.2.x](https://pi-hole.net/)
-Add-on has a web UI | No. This add-on does not contain any views.
+Add-on has a web UI | Yes, this Add-on contains a configuration page for the Modular Input.
 
 The TA-pihole_dns Add-on allows Splunk data administrators to map the Pi-Hole DNS events to the [CIM](https://docs.splunk.com/Splexicon:CommonInformationModel) enabling the data to be used with other Splunk Apps, such as Enterprise Security.
 
@@ -15,7 +15,17 @@ The TA-pihole_dns Add-on allows Splunk data administrators to map the Pi-Hole DN
 ```TEXT
 Version 1.2.7
 
+New:
+- Added Modular Input for pulling select data from the HTTP API.
 ```
+
+## Navigation
+
+- [Pihole Logging Requirements](#pihole-logging-requirements)
+- [Where to Install](#where-to-install)
+- [Input Requirements](#input-requirements)
+- [Sourcetypes](#sourcetypes)
+- [Installation Walkthrough](#installation-walkthrough)
 
 ## Pihole Logging Requirements
 
@@ -31,7 +41,7 @@ Set `log-queries=extra` in the pihole dnsmasq configuration file. Pi-hole recomm
 
 Splunk platform Instance type | Supported | Required | Actions required/ Comments
 ----------------------------- | --------- | -------- | --------------------------
-Search Heads | Yes | Yes | Install this add-on to all search heads
+Search Heads | Yes | Yes | Install this add-on to all search heads.
 Indexers | Yes | Conditional | Not required if heavy forwarders are used to collect data. Required if using Universal or Light Forwarders.
 Heavy Forwarders | Yes | Conditional | Required, if HFs are used to collect this data source.
 Universal Forwarders | Yes | Not required | The add-on includes an inputs.conf that is disabled by default. This can be used to create an input on the forwarder if enabled.
@@ -53,6 +63,7 @@ Source type | Description | CIM Data Models
 `pihole` | Pi-hole DNS events | [Network Resolution](https://docs.splunk.com/Documentation/CIM/latest/User/NetworkResolutionDNS)
 `pihole:dhcp` | Pi-hole DHCP events | [Network Sessions](https://docs.splunk.com/Documentation/CIM/latest/User/NetworkSessions)
 `pihole:ftl` | Pi-hole FTL events | None
+`pihole:system` | Pi-hole API data | None
 
 ## Installation Walkthrough
 
@@ -80,6 +91,29 @@ sourcetype = pihole:ftl
 ```
 
 Push the configuration to the forwarder, if using a deployment server, or restart the UF if configuring on the UF itself.
+
+### Modular Input
+
+1. Open the Pi-hole Add-on in Splunk Web and click "Create New Input"
+2. Fill out the following information:
+    - Unique name
+    - Interval in seconds to run on (default 1 hour)
+    - Select the appropriate index
+    - Enter the IP or FQDN of the Pi-hole server
+3. Click add to Save
+
+Search for your data in the index you selected with the sourcetype of `pihole:system`.
+
+#### Troubleshooting
+
+If data does not appear within a few moments, there may be a connection issue. Perform the following to begin troubleshooting:
+
+1. Enable `DEBUG` logging. Navigate to the configuration page and click the "Logging" Tab. Change Log Level to `DEBUG`.
+2. search the internal index with the sourcetype of `tapiholedns:log` for issues.
+
+```TEXT
+index=_internal sourcetype=tapiholedns:log
+```
 
 ## Bugs
 
