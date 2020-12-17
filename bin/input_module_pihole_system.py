@@ -31,7 +31,7 @@ def collect_events(helper, ew):
     interval = int(helper.get_arg('interval'))
 
     # Get Checkpoint
-    key = 'opnsense_system'
+    key = 'pihole_api'
     current_time = int(time.time())
     check_time = current_time - interval
 
