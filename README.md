@@ -57,7 +57,7 @@ Set the sourcetype to `pihole` in the inputs.conf file on the forwarder.
 
 ## Setup Modular Input
 
-This modular input interacts with the Pi-hole servers http API. This is currently an unsupported method, however, pi-hole has stated that they have plans to build out the API in the upcoming releases.
+This modular input interacts with the Pi-hole server's http API. This is currently an unsupported method, however, pi-hole has stated that they have plans to build out the API in the upcoming releases.
 
 1. Open the Pi-hole Add-on in Splunk Web and click "Create New Input"
 2. Fill out the following information:
