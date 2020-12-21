@@ -24,6 +24,7 @@ New:
 - [Pihole Logging Requirements](#pihole-logging-requirements)
 - [Where to Install](#where-to-install)
 - [Input Requirements](#input-requirements)
+- [Modular Input Setup](#setup-modular-input)
 - [Sourcetypes](#sourcetypes)
 - [Installation Walkthrough](#installation-walkthrough)
 
@@ -53,6 +54,31 @@ Universal Forwarders | Yes | Not required | The add-on includes an inputs.conf t
 Set the sourcetype to `pihole` in the inputs.conf file on the forwarder.
 
 \* ***See [Installation Walkthrough](#Installation-Walkthrough) for more information***
+
+## Setup Modular Input
+
+This modular input interacts with the Pi-hole servers http API. This is currently an unsupported method, however, pi-hole has stated that they have plans to build out the API in the upcoming releases.
+
+1. Open the Pi-hole Add-on in Splunk Web and click "Create New Input"
+2. Fill out the following information:
+    - Unique name
+    - Interval in seconds to run on (default 1 hour)
+    - Select the appropriate index
+    - Enter the IP or FQDN of the Pi-hole server
+3. Click add to Save
+
+Search for your data in the index you selected with the sourcetype of `pihole:system`.
+
+### Troubleshooting
+
+If data does not appear within a few moments, there may be a connection issue. Perform the following to begin troubleshooting:
+
+1. Enable `DEBUG` logging. Navigate to the configuration page and click the "Logging" Tab. Change Log Level to `DEBUG`.
+2. search the internal index with the sourcetype of `tapiholedns:log` for issues.
+
+```TEXT
+index=_internal sourcetype=tapiholedns:log
+```
 
 ## Sourcetypes
 
@@ -92,29 +118,6 @@ sourcetype = pihole:ftl
 
 Push the configuration to the forwarder, if using a deployment server, or restart the UF if configuring on the UF itself.
 
-### Modular Input
+## Bugs/Feature Requests
 
-1. Open the Pi-hole Add-on in Splunk Web and click "Create New Input"
-2. Fill out the following information:
-    - Unique name
-    - Interval in seconds to run on (default 1 hour)
-    - Select the appropriate index
-    - Enter the IP or FQDN of the Pi-hole server
-3. Click add to Save
-
-Search for your data in the index you selected with the sourcetype of `pihole:system`.
-
-#### Troubleshooting
-
-If data does not appear within a few moments, there may be a connection issue. Perform the following to begin troubleshooting:
-
-1. Enable `DEBUG` logging. Navigate to the configuration page and click the "Logging" Tab. Change Log Level to `DEBUG`.
-2. search the internal index with the sourcetype of `tapiholedns:log` for issues.
-
-```TEXT
-index=_internal sourcetype=tapiholedns:log
-```
-
-## Bugs
-
-Please open an issue at [github.com](https://github.com/ZachChristensen28/TA-pihole_dns)
+Please open an issue or submit feature requests at [github.com](https://github.com/ZachChristensen28/TA-pihole_dns)
