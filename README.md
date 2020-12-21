@@ -1,14 +1,14 @@
-# TA-pihole_dns - Add-on for Pi-hole DNS Server
+# TA-pihole_dns - Pi-hole Add-on for Splunk
 
 ![GitHub](https://img.shields.io/github/license/zachchristensen28/TA-pihole_dns)
 
 Info | Description
 ------|----------
 Version | 1.2.7 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
-Vendor Product Version | [Pi-hole v5.2.x](https://pi-hole.net/)
+Vendor Product Version | [Pi-hole® v5.2.x](https://pi-hole.net/)
 Add-on has a web UI | Yes, this Add-on contains a configuration page for the Modular Input.
 
-The TA-pihole_dns Add-on allows Splunk data administrators to map the Pi-Hole DNS events to the [CIM](https://docs.splunk.com/Splexicon:CommonInformationModel) enabling the data to be used with other Splunk Apps, such as Enterprise Security.
+The Pi-hole Add-on allows Splunk data administrators to map the Pi-Hole® DNS server events to the [CIM](https://docs.splunk.com/Splexicon:CommonInformationModel) enabling the data to be used with other Splunk Apps, such as Splunk® App for Enterprise Security.
 
 ## Release Notes
 
@@ -32,7 +32,7 @@ New:
 
 \* ***Failing to perform the following will cause this add-on to not extract fields properly***
 
-Set `log-queries=extra` in the pihole dnsmasq configuration file. Pi-hole recommends to make any changes to a new configuration file to avoid changes to be overridden during an update.
+Set `log-queries=extra` in the pihole dnsmasq configuration file. Pi-hole® recommends to make any changes to a new configuration file to avoid changes to be overridden during an update.
 
 1. Create a new file: `/etc/dnsmasq.d/02-pihole-splunk.conf`.
 1. Add `log-queries=extra` to the file. save and close the file
