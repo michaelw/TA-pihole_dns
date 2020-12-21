@@ -31,27 +31,25 @@ def collect_events(helper, ew):
     interval = int(helper.get_arg('interval'))
 
     # Get Checkpoint
-    key = 'pihole_api'
+    key = f'pihole_api_{pihole_host}'
     current_time = int(time.time())
     check_time = current_time - interval
 
     if helper.get_check_point(key):
-        old_state = int(helper.get_check_point(key)['checkpoint'])
-        helper.log_info('msg="Checkpoint found"')
+        old_state = helper.get_check_point(key)
+        helper.log_info(f'msg="Checkpoint found", hostname="{pihole_host}"')
         helper.log_debug(
-            f'msg="Checkpoint information", checkpoint="{old_state}", interval="{interval}"')
+            f'msg="Checkpoint information", checkpoint="{old_state}", interval="{interval}", hostname="{pihole_host}"')
 
         if check_time < old_state:
             helper.log_info(
-                'msg="Skipping because interval is too close to previous run", action="stopped"')
-            sys.exit(0)
+                f'msg="Skipping because interval is too close to previous run", action="aborted", hostname="{pihole_host}"')
+            return
         else:
-            helper.log_info('msg="Running scheduled Interval"')
+            helper.log_info(f'msg="Running scheduled Interval", hostname="{pihole_host}"')
 
     else:
-        helper.log_info('msg="Checkpoint file not found"')
-
-    new_state = {'checkpoint': f'{current_time}'}
+        helper.log_info(f'msg="Checkpoint file not found", hostname="{pihole_host}"')
 
     # Get Proxy
     proxy = helper.get_proxy()
@@ -75,17 +73,17 @@ def collect_events(helper, ew):
 
     # Make Call
     try:
-        helper.log_info('msg="starting request"')
+        helper.log_info(f'msg="starting request", action="starting", hostname="{pihole_host}"')
         r = helper.send_http_request(
             url, 'get', headers=headers, use_proxy=True)
     except Exception as e:
         helper.log_error(
-            'error_msg="Unable to complete request", action="failed"')
+            f'error_msg="Unable to complete request", action="failed", hostname="{pihole_host}"')
         helper.log_debug(f'error_msg="{e}"')
-        sys.exit(1)
+        return False
 
     if r.status_code == 200:
-        helper.log_info('msg="request completed", action="success"')
+        helper.log_info(f'msg="request completed", action="success", hostname="{pihole_host}"')
         response = r.json()
         event = {}
         event['status'] = response['status']
@@ -95,15 +93,16 @@ def collect_events(helper, ew):
 
         # Create Splunk Event
         splunk_event = helper.new_event(source=helper.get_input_type(), index=helper.get_output_index(
-        ), sourcetype=helper.get_sourcetype(), data=json.dumps(event))
+        ), sourcetype=helper.get_sourcetype(), data=json.dumps(event), host=pihole_host)
         ew.write_event(splunk_event)
 
         # Checkpointer
+        new_state = int(time.time())
         helper.save_check_point(key, new_state)
         helper.log_info(
-            f'msg="Updating Checkpoint", checkpoint="{new_state["checkpoint"]}"')
+            f'msg="Updating Checkpoint", checkpoint="{new_state}", hostname="{pihole_host}"')
     else:
         helper.log_error(
-            'error_msg="Unable to retrieve information", action="failed"')
+            f'error_msg="Unable to retrieve information", action="failed", hostname="{pihole_host}"')
         helper.log_debug(f'status_code="{r.status_code}"')
-        sys.exit(1)
+        return False
