@@ -120,4 +120,4 @@ Push the configuration to the forwarder, if using a deployment server, or restar
 
 ## Bugs/Feature Requests
 
-Please open an issue or submit feature requests at [github.com](https://github.com/ZachChristensen28/TA-pihole_dns)
+Please open an issue or submit a feature requests at [github.com](https://github.com/ZachChristensen28/TA-pihole_dns)
