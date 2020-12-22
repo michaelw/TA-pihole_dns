@@ -4,8 +4,8 @@
 
 Info | Description
 ------|----------
-Version | 1.2.7 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
-Vendor Product Version | [Pi-hole® v5.2.x](https://pi-hole.net/)
+Version | 1.2.8 - See on [Splunkbase](https://splunkbase.splunk.com/app/4505/)
+Vendor Product Version | [Pi-hole® v5.2](https://pi-hole.net/)
 Add-on has a web UI | Yes, this Add-on contains a configuration page for the Modular Input.
 
 The Pi-hole Add-on allows Splunk data administrators to map the Pi-Hole® DNS server events to the [CIM](https://docs.splunk.com/Splexicon:CommonInformationModel) enabling the data to be used with other Splunk Apps, such as Splunk® App for Enterprise Security.
@@ -13,10 +13,7 @@ The Pi-hole Add-on allows Splunk data administrators to map the Pi-Hole® DNS se
 ## Release Notes
 
 ```TEXT
-Version 1.2.7
-
-New:
-- Added Modular Input for pulling select data from the HTTP API.
+Version 1.2.8
 ```
 
 ## Navigation
