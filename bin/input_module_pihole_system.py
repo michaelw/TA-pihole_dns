@@ -26,6 +26,9 @@ def collect_events(helper, ew):
 
     # Get Pi-hole host
     pihole_host = helper.get_arg('pihole_host')
+    host = helper.get_arg('host')
+    if not host or host == '$decideOnStartup':
+      host = pihole_host
 
     # Get Interval
     interval = int(helper.get_arg('interval'))
@@ -93,7 +96,7 @@ def collect_events(helper, ew):
 
         # Create Splunk Event
         splunk_event = helper.new_event(source=helper.get_input_type(), index=helper.get_output_index(
-        ), sourcetype=helper.get_sourcetype(), data=json.dumps(event), host=pihole_host)
+        ), sourcetype=helper.get_sourcetype(), data=json.dumps(event), host=host)
         ew.write_event(splunk_event)
 
         # Checkpointer
